@@ -15,12 +15,12 @@ function sortGenre(genre1, genre2) {
 }
 
 function getMostCommonGenres(books) {
-  const genres = {};
-  books.forEach((book) => {
+  const genres = books.reduce((acc, book) => {
     let { genre } = book;
-    if (!genres[genre]) genres[genre] = { name: genre, count: 1 };
-    else genres[genre].count++;
-  });
+    if (!acc[genre]) acc[genre] = { name: genre, count: 1 };
+    else acc[genre].count++;
+    return acc;
+  }, {});
   return Object.values(genres).sort(sortGenre).slice(0, 5);
 }
 
@@ -36,14 +36,13 @@ function getMostPopularBooks(books) {
 }
 
 function getMostPopularAuthors(books, authors) {
-  const authorsByPop = {};
-  authors.forEach(
-    (author) =>
-      (authorsByPop[author.id] = {
-        name: author.name.first + " " + author.name.last,
-        count: 0,
-      })
-  );
+  const authorsByPop = authors.reduce((acc, author) => {
+    acc[author.id] = {
+      name: author.name.first + " " + author.name.last,
+      count: 0,
+    };
+    return acc;
+  }, {});
   books.forEach(
     (book) => (authorsByPop[book.authorId].count += book.borrows.length)
   );
