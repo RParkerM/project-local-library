@@ -12,7 +12,7 @@ function getBooksBorrowedCount(books) {
 
 function getMostCommonGenres(books) {
   const genres = books.reduce((acc, book) => {
-    let { genre } = book;
+    const { genre } = book;
     if (!acc[genre]) acc[genre] = { name: genre, count: 1 };
     else acc[genre].count++;
     return acc;
@@ -34,7 +34,7 @@ function getMostPopularBooks(books) {
 function getMostPopularAuthors(books, authors) {
   const authorsByPop = authors.reduce((acc, author) => {
     acc[author.id] = {
-      name: author.name.first + " " + author.name.last,
+      name: `${author.name.first} ${author.name.last}`,
       count: 0,
     };
     return acc;
