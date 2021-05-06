@@ -1,3 +1,7 @@
+//This file completes following requirements:
+//  Arrow functions, Spread operator, Ternary operator, Helper Functions
+//  Array Methods: filter, reduce, find, map, some, forEach
+
 function findAccountById(accounts, id) {
   return accounts.find((account) => account.id === id);
 }
@@ -11,16 +15,17 @@ function sortAccountsByLastName(accounts) {
 }
 
 function getTotalNumberOfBorrows(account, books) {
-  let totalBorrows = 0;
-  books.forEach((book) => {
+  return books.reduce((acc, book) => {
     book.borrows.forEach((borrow) => {
-      if (borrow.id === account.id) totalBorrows++;
+      if (borrow.id === account.id) acc++;
     });
-  });
-  return totalBorrows;
+    return acc;
+  }, 0);
 }
 
-function getAuthorById(id, authors) {
+//Helper Function
+
+function findAuthorById(id, authors) {
   return authors.find((author) => author.id === id);
 }
 
@@ -31,7 +36,7 @@ function getBooksPossessedByAccount(account, books, authors) {
     )
   );
   return currentlyCheckedBooks.map((book) => {
-    return { ...book, author: getAuthorById(book.authorId, authors) };
+    return { ...book, author: findAuthorById(book.authorId, authors) };
   });
 }
 

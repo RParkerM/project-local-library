@@ -1,3 +1,7 @@
+//This file completes following requirements:
+//  Arrow functions, Spread operator
+//  Array Methods: map, find
+
 function findAuthorById(authors, id) {
   return authors.find((author) => author.id === id);
 }

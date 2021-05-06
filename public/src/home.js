@@ -1,3 +1,7 @@
+//This file completes following requirements:
+// Object Destructuring, Arrow functions, Template Literals, helper method
+// Array methods: filter, reduce, map, sort
+
 function getTotalBooksCount(books) {
   return books.length;
 }
@@ -20,6 +24,7 @@ function getMostCommonGenres(books) {
   return Object.values(genres).sort(sortByPopularity).slice(0, 5);
 }
 
+// Helper function to help all popularity sorting
 function sortByPopularity(item1, item2) {
   return item2.count - item1.count;
 }
