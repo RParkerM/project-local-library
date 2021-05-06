@@ -10,10 +10,6 @@ function getBooksBorrowedCount(books) {
   return books.filter((book) => !book.borrows[0].returned).length;
 }
 
-function sortGenre(genre1, genre2) {
-  return genre2.count - genre1.count;
-}
-
 function getMostCommonGenres(books) {
   const genres = books.reduce((acc, book) => {
     let { genre } = book;
@@ -21,7 +17,7 @@ function getMostCommonGenres(books) {
     else acc[genre].count++;
     return acc;
   }, {});
-  return Object.values(genres).sort(sortGenre).slice(0, 5);
+  return Object.values(genres).sort(sortByPopularity).slice(0, 5);
 }
 
 function sortByPopularity(item1, item2) {
